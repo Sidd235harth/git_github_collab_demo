@@ -1,0 +1,145 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Orbitron', sans-serif;
+}
+
+body{
+    background: radial-gradient(circle at top,#0b0f1a,#000);
+    color:white;
+}
+
+/* NAVBAR */
+nav{
+    position:fixed;
+    width:100%;
+    display:flex;
+    justify-content:space-between;
+    padding:15px 40px;
+    background:rgba(0,0,0,0.7);
+    backdrop-filter: blur(10px);
+}
+
+nav h1{
+    color:#7a5cff;
+    text-shadow:0 0 15px #7a5cff;
+}
+
+nav a{
+    color:white;
+    margin-left:20px;
+    text-decoration:none;
+    transition:0.3s;
+}
+
+nav a:hover{
+    color:#7a5cff;
+}
+
+/* HERO */
+.hero{
+    height:100vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+}
+
+.hero h2{
+    font-size:60px;
+    animation: glow 2s infinite alternate;
+}
+
+@keyframes glow{
+    from{ text-shadow:0 0 10px #7a5cff;}
+    to{ text-shadow:0 0 40px #7a5cff;}
+}
+
+button{
+    margin-top:25px;
+    padding:12px 25px;
+    border:none;
+    background:#7a5cff;
+    color:white;
+    border-radius:6px;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+button:hover{
+    transform:scale(1.1);
+    box-shadow:0 0 20px #7a5cff;
+}
+
+/* STATS */
+.stats{
+    padding:80px 20px;
+    text-align:center;
+}
+
+.stat-container{
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+}
+
+.stat-box{
+    margin:20px;
+    padding:25px;
+    background:#111;
+    border-radius:12px;
+    width:180px;
+    box-shadow:0 0 15px rgba(122,92,255,0.4);
+}
+
+/* SHADOW ARMY */
+.army{
+    padding:80px 20px;
+    text-align:center;
+}
+
+.cards{
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:25px;
+}
+
+.card{
+    background:#111;
+    width:250px;
+    padding:20px;
+    border-radius:12px;
+    transition:0.4s;
+    box-shadow:0 0 15px rgba(122,92,255,0.3);
+}
+
+.card:hover{
+    transform:translateY(-10px) scale(1.05);
+    box-shadow:0 0 25px #7a5cff;
+}
+
+.card h3{
+    color:#7a5cff;
+}
+
+/* LEVEL EFFECT */
+.level-effect{
+    position:fixed;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    font-size:60px;
+    opacity:0;
+    color:#7a5cff;
+    text-shadow:0 0 30px #7a5cff;
+}
+
+/* FOOTER */
+footer{
+    text-align:center;
+    padding:20px;
+    background:black;
+}
