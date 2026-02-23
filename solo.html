@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Solo Leveling - Shadow Monarch</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+
+<style>
+
+/* ===== GLOBAL ===== */
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Orbitron',sans-serif;
+}
+
+body{
+    background:radial-gradient(circle at top,#0b0f1a,#000);
+    color:white;
+    overflow-x:hidden;
+}
+
+/* ===== NAVBAR ===== */
+nav{
+    position:fixed;
+    width:100%;
+    padding:15px 40px;
+    display:flex;
+    justify-content:space-between;
+    background:rgba(0,0,0,0.7);
+    backdrop-filter:blur(10px);
+    z-index:1000;
+}
+
+nav h1{
+    color:#7a5cff;
+    text-shadow:0 0 15px #7a5cff;
+}
+
+nav a{
+    color:white;
+    margin-left:20px;
+    text-decoration:none;
+    transition:.3s;
+}
+nav a:hover{ color:#7a5cff; }
+
+/* ===== HERO ===== */
+.hero{
+    height:100vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+}
+
+.hero h2{
+    font-size:70px;
+    animation:glow 2s infinite alternate;
+}
+
+@keyframes glow{
+    from{ text-shadow:0 0 10px #7a5cff;}
+    to{ text-shadow:0 0 45px #7a5cff;}
+}
+
+.hero p{
+    opacity:.8;
+    margin-top:15px;
+}
+
+button{
+    margin-top:25px;
+    padding:14px 28px;
+    border:none;
+    background:#7a5cff;
+    color:white;
+    border-radius:6px;
+    cursor:pointer;
+    transition:.3s;
+}
+
+button:hover{
+    transform:scale(1.1);
+    box-shadow:0 0 25px #7a5cff;
+}
+
+/* ===== STATS ===== */
+.stats{
+    padding:80px 20px;
+    text-align:center;
+}
+
+.stat-container{
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+}
+
+.stat-box{
+    background:#111;
+    margin:15px;
+    padding:25px;
+    width:180px;
+    border-radius:12px;
+    box-shadow:0 0 15px rgba(122,92,255,.4);
+}
+
+/* ===== RANK DISPLAY ===== */
+.rank{
+    font-size:28px;
+    margin-top:20px;
+    color:#7a5cff;
+    text-shadow:0 0 15px #7a5cff;
+}
+
+/* ===== SHADOW ARMY ===== */
+.army{
+    padding:80px 20px;
+    text-align:center;
+}
+
+.cards{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:25px;
+}
+
+.card{
+    background:#111;
+    width:250px;
+    padding:20px;
+    border-radius:12px;
+    transition:.4s;
+    box-shadow:0 0 15px rgba(122,92,255,.3);
+}
+
+.card:hover{
+    transform:translateY(-10px) scale(1.05);
+    box-shadow:0 0 30px #7a5cff;
+}
+
+.card h3{ color:#7a5cff; }
+
+/* ===== SYSTEM POPUP ===== */
+.system{
+    position:fixed;
+    top:20px;
+    right:-400px;
+    background:#111;
+    padding:20px;
+    border-left:4px solid #7a5cff;
+    box-shadow:0 0 20px #7a5cff;
+    transition:.6s;
+}
+
+.system.show{
+    right:20px;
+}
+
+/* LEVEL EFFECT */
+.level-effect{
+    position:fixed;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    font-size:60px;
+    opacity:0;
+    color:#7a5cff;
+    text-shadow:0 0 40px #7a5cff;
+    pointer-events:none;
+}
+
+/* FOOTER */
+footer{
+    text-align:center;
+    padding:20px;
+    background:black;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav>
+<h1>SOLO LEVELING</h1>
+<div>
+<a href="#home">Home</a>
+<a href="#stats">Stats</a>
+<a href="#army">Army</a>
+</div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+<h2>ARISE.</h2>
+<p>You have been chosen by the System.</p>
+<button onclick="levelUp()">LEVEL UP</button>
+</section>
+
+<!-- STATS -->
+<section class="stats" id="stats">
+<h2>Hunter Status Window</h2>
+
+<div class="stat-container">
+
+<div class="stat-box">
+<h3>Level</h3>
+<p id="level">1</p>
+</div>
+
+<div class="stat-box">
+<h3>Strength</h3>
+<p id="strength">10</p>
+</div>
+
+<div class="stat-box">
+<h3>Agility</h3>
+<p id="agility">10</p>
+</div>
+
+<div class="stat-box">
+<h3>Intelligence</h3>
+<p id="intelligence">10</p>
+</div>
+
+</div>
+
+<div class="rank" id="rank">Rank: E</div>
+</section>
+
+<!-- SHADOW ARMY -->
+<section class="army" id="army">
+<h2>Shadow Army</h2>
+
+<div class="cards">
+<div class="card">
+<h3>⚔️ Igris</h3>
+<p>Loyal knight of the Shadow Monarch.</p>
+</div>
+
+<div class="card">
+<h3>🐺 Iron</h3>
+<p>Tank-class shadow soldier.</p>
+</div>
+
+<div class="card">
+<h3>🐉 Beru</h3>
+<p>The Ant King reborn as shadow commander.</p>
+</div>
+</div>
+</section>
+
+<!-- SYSTEM MESSAGE -->
+<div id="systemMsg" class="system">SYSTEM: Level Increased</div>
+
+<!-- LEVEL TEXT -->
+<div id="levelEffect" class="level-effect">LEVEL UP</div>
+
+<footer>
+<p>Shadow Monarch System ©</p>
+</footer>
+
+<script>
+
+/* ===== PLAYER DATA ===== */
+let level=1;
+let strength=10;
+let agility=10;
+let intelligence=10;
+
+const ranks=["E","D","C","B","A","S"];
+
+/* ===== LEVEL UP ===== */
+function levelUp(){
+
+    level++;
+    strength+=rand();
+    agility+=rand();
+    intelligence+=rand();
+
+    document.getElementById("level").innerText=level;
+    document.getElementById("strength").innerText=strength;
+    document.getElementById("agility").innerText=agility;
+    document.getElementById("intelligence").innerText=intelligence;
+
+    updateRank();
+    showEffect();
+    showSystem();
+}
+
+function rand(){
+    return Math.floor(Math.random()*5)+1;
+}
+
+/* ===== RANK SYSTEM ===== */
+function updateRank(){
+    let index=Math.min(Math.floor(level/5),5);
+    document.getElementById("rank").innerText="Rank: "+ranks[index];
+}
+
+/* ===== LEVEL EFFECT ===== */
+function showEffect(){
+    const effect=document.getElementById("levelEffect");
+    effect.style.opacity="1";
+    effect.style.transform="translate(-50%,-50%) scale(1.4)";
+
+    setTimeout(()=>{
+        effect.style.opacity="0";
+        effect.style.transform="translate(-50%,-50%) scale(1)";
+    },800);
+}
+
+/* ===== SYSTEM POPUP ===== */
+function showSystem(){
+    const sys=document.getElementById("systemMsg");
+    sys.classList.add("show");
+
+    setTimeout(()=>{
+        sys.classList.remove("show");
+    },2000);
+}
+
+</script>
+
+</body>
+</html>
